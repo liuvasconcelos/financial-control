@@ -12,12 +12,29 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+        window = UIWindow(windowScene: scene as! UIWindowScene)
+        window!.makeKeyAndVisible()
+        
+        let mainView: BillController = BillController()
+                
+        let navigation = UINavigationController(rootViewController: mainView)
+        
+        navigation.navigationBar.topItem?.title                 = "Controle de Passivos"
+        navigation.navigationBar.prefersLargeTitles             = true
+        navigation.navigationBar.topItem?.largeTitleDisplayMode = .automatic
+        navigation.navigationBar.largeTitleTextAttributes       = [.foregroundColor: UIColor.black]
+        navigation.navigationBar.titleTextAttributes            = [.foregroundColor: UIColor.white]
+
+        UINavigationBar.appearance().backgroundColor = .clear
+        UINavigationBar.appearance().tintColor       = .black
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes([NSAttributedString.Key(rawValue: NSAttributedString.Key.foregroundColor.rawValue): UIColor.white], for: .normal)
+
+        window!.rootViewController = navigation
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
