@@ -10,25 +10,22 @@ import XCTest
 @testable import financial_control
 
 class financial_controlTests: XCTestCase {
-
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    
+    func testExpiredBill() {
+        let bill          = Bill(id: 1, title: "Title", value: 10.3, expireDate: Date())
+        let billViewModel = BillViewModel(bill: bill)
+        let billTitle     = "Title - Vencida"
+        
+        XCTAssertEqual(billTitle, billViewModel.title)
+        XCTAssertEqual(UITableViewCell.AccessoryType.none, billViewModel.accessoryType)
     }
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    func testNotExpiredBill() {
+        let bill          = Bill(id: 1, title: "Title", value: 10.3, expireDate: Date() + 10)
+        let billViewModel = BillViewModel(bill: bill)
+        let billTitle     = "Title - A vencer!"
+        
+        XCTAssertEqual(billTitle, billViewModel.title)
+        XCTAssertEqual(UITableViewCell.AccessoryType.detailDisclosureButton, billViewModel.accessoryType)
     }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }

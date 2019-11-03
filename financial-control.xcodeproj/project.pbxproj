@@ -12,7 +12,6 @@
 		53B0DC2A236F5A9A00A4A58F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53B0DC29236F5A9A00A4A58F /* Assets.xcassets */; };
 		53B0DC2D236F5A9A00A4A58F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53B0DC2B236F5A9A00A4A58F /* LaunchScreen.storyboard */; };
 		53B0DC38236F5A9A00A4A58F /* financial_controlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B0DC37236F5A9A00A4A58F /* financial_controlTests.swift */; };
-		53B0DC43236F5A9A00A4A58F /* financial_controlUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B0DC42236F5A9A00A4A58F /* financial_controlUITests.swift */; };
 		53B0DC55236F5B2700A4A58F /* Bill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B0DC54236F5B2700A4A58F /* Bill.swift */; };
 		53B0DC57236F5BA900A4A58F /* BillCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B0DC56236F5BA900A4A58F /* BillCell.swift */; };
 		53B0DC59236F5E9900A4A58F /* BillController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B0DC58236F5E9900A4A58F /* BillController.swift */; };
@@ -22,13 +21,6 @@
 
 /* Begin PBXContainerItemProxy section */
 		53B0DC34236F5A9A00A4A58F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 53B0DC15236F5A9800A4A58F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 53B0DC1C236F5A9800A4A58F;
-			remoteInfo = "financial-control";
-		};
-		53B0DC3F236F5A9A00A4A58F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 53B0DC15236F5A9800A4A58F /* Project object */;
 			proxyType = 1;
@@ -47,9 +39,6 @@
 		53B0DC33236F5A9A00A4A58F /* financial-controlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "financial-controlTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		53B0DC37236F5A9A00A4A58F /* financial_controlTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = financial_controlTests.swift; sourceTree = "<group>"; };
 		53B0DC39236F5A9A00A4A58F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		53B0DC3E236F5A9A00A4A58F /* financial-controlUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "financial-controlUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		53B0DC42236F5A9A00A4A58F /* financial_controlUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = financial_controlUITests.swift; sourceTree = "<group>"; };
-		53B0DC44236F5A9A00A4A58F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		53B0DC54236F5B2700A4A58F /* Bill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bill.swift; sourceTree = "<group>"; };
 		53B0DC56236F5BA900A4A58F /* BillCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCell.swift; sourceTree = "<group>"; };
 		53B0DC58236F5E9900A4A58F /* BillController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillController.swift; sourceTree = "<group>"; };
@@ -72,13 +61,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		53B0DC3B236F5A9A00A4A58F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -87,7 +69,6 @@
 			children = (
 				53B0DC1F236F5A9800A4A58F /* financial-control */,
 				53B0DC36236F5A9A00A4A58F /* financial-controlTests */,
-				53B0DC41236F5A9A00A4A58F /* financial-controlUITests */,
 				53B0DC1E236F5A9800A4A58F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -97,7 +78,6 @@
 			children = (
 				53B0DC1D236F5A9800A4A58F /* financial-control.app */,
 				53B0DC33236F5A9A00A4A58F /* financial-controlTests.xctest */,
-				53B0DC3E236F5A9A00A4A58F /* financial-controlUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -127,15 +107,6 @@
 				53B0DC39236F5A9A00A4A58F /* Info.plist */,
 			);
 			path = "financial-controlTests";
-			sourceTree = "<group>";
-		};
-		53B0DC41236F5A9A00A4A58F /* financial-controlUITests */ = {
-			isa = PBXGroup;
-			children = (
-				53B0DC42236F5A9A00A4A58F /* financial_controlUITests.swift */,
-				53B0DC44236F5A9A00A4A58F /* Info.plist */,
-			);
-			path = "financial-controlUITests";
 			sourceTree = "<group>";
 		};
 		53B0DC50236F5AED00A4A58F /* Model */ = {
@@ -223,24 +194,6 @@
 			productReference = 53B0DC33236F5A9A00A4A58F /* financial-controlTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		53B0DC3D236F5A9A00A4A58F /* financial-controlUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 53B0DC4D236F5A9A00A4A58F /* Build configuration list for PBXNativeTarget "financial-controlUITests" */;
-			buildPhases = (
-				53B0DC3A236F5A9A00A4A58F /* Sources */,
-				53B0DC3B236F5A9A00A4A58F /* Frameworks */,
-				53B0DC3C236F5A9A00A4A58F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				53B0DC40236F5A9A00A4A58F /* PBXTargetDependency */,
-			);
-			name = "financial-controlUITests";
-			productName = "financial-controlUITests";
-			productReference = 53B0DC3E236F5A9A00A4A58F /* financial-controlUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -255,10 +208,6 @@
 						CreatedOnToolsVersion = 11.2;
 					};
 					53B0DC32236F5A9A00A4A58F = {
-						CreatedOnToolsVersion = 11.2;
-						TestTargetID = 53B0DC1C236F5A9800A4A58F;
-					};
-					53B0DC3D236F5A9A00A4A58F = {
 						CreatedOnToolsVersion = 11.2;
 						TestTargetID = 53B0DC1C236F5A9800A4A58F;
 					};
@@ -279,7 +228,6 @@
 			targets = (
 				53B0DC1C236F5A9800A4A58F /* financial-control */,
 				53B0DC32236F5A9A00A4A58F /* financial-controlTests */,
-				53B0DC3D236F5A9A00A4A58F /* financial-controlUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -295,13 +243,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		53B0DC31236F5A9A00A4A58F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		53B0DC3C236F5A9A00A4A58F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -333,14 +274,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		53B0DC3A236F5A9A00A4A58F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				53B0DC43236F5A9A00A4A58F /* financial_controlUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -348,11 +281,6 @@
 			isa = PBXTargetDependency;
 			target = 53B0DC1C236F5A9800A4A58F /* financial-control */;
 			targetProxy = 53B0DC34236F5A9A00A4A58F /* PBXContainerItemProxy */;
-		};
-		53B0DC40236F5A9A00A4A58F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 53B0DC1C236F5A9800A4A58F /* financial-control */;
-			targetProxy = 53B0DC3F236F5A9A00A4A58F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -562,46 +490,6 @@
 			};
 			name = Release;
 		};
-		53B0DC4E236F5A9A00A4A58F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L9CMSL6QFV;
-				INFOPLIST_FILE = "financial-controlUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.liuvasconcelos.financial-controlUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "financial-control";
-			};
-			name = Debug;
-		};
-		53B0DC4F236F5A9A00A4A58F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L9CMSL6QFV;
-				INFOPLIST_FILE = "financial-controlUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.liuvasconcelos.financial-controlUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "financial-control";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -628,15 +516,6 @@
 			buildConfigurations = (
 				53B0DC4B236F5A9A00A4A58F /* Debug */,
 				53B0DC4C236F5A9A00A4A58F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		53B0DC4D236F5A9A00A4A58F /* Build configuration list for PBXNativeTarget "financial-controlUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				53B0DC4E236F5A9A00A4A58F /* Debug */,
-				53B0DC4F236F5A9A00A4A58F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
