@@ -10,8 +10,7 @@ import UIKit
 
 class BillController: UITableViewController {
     
-    var bills  = [Bill]()
-    let cellId = "cellId"
+    var billViewModels = [BillViewModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,13 +33,14 @@ class BillController: UITableViewController {
     }
     
     func fetchData() {
-        bills = [Bill(id: 1, title: "Conta 01", value: 10.0, expireDate: Date() + 1),
-                 Bill(id: 2, title: "Conta 02", value: 20.0, expireDate: Date())]
+        let bills = [Bill(id: 1, title: "Conta 01", value: 10.0, expireDate: Date() + 1),
+                     Bill(id: 2, title: "Conta 02", value: 20.0, expireDate: Date())]
+        billViewModels = bills.map({ return BillViewModel(bill: $0)})
         tableView.reloadData()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return bills.count
+        return billViewModels.count
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -52,7 +52,7 @@ class BillController: UITableViewController {
             return UITableViewCell()
         }
         
-        cell.bill = bills[indexPath.row]
+        cell.billViewModel = billViewModels[indexPath.row]
 
         return cell
     }

@@ -17,6 +17,7 @@
 		53B0DC57236F5BA900A4A58F /* BillCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B0DC56236F5BA900A4A58F /* BillCell.swift */; };
 		53B0DC59236F5E9900A4A58F /* BillController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B0DC58236F5E9900A4A58F /* BillController.swift */; };
 		53B0DC5C236F626A00A4A58F /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B0DC5B236F626A00A4A58F /* UIViewExtension.swift */; };
+		53B0DC5F236F6B2700A4A58F /* BillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B0DC5E236F6B2700A4A58F /* BillViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		53B0DC56236F5BA900A4A58F /* BillCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCell.swift; sourceTree = "<group>"; };
 		53B0DC58236F5E9900A4A58F /* BillController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillController.swift; sourceTree = "<group>"; };
 		53B0DC5B236F626A00A4A58F /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		53B0DC5E236F6B2700A4A58F /* BillViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 		53B0DC1F236F5A9800A4A58F /* financial-control */ = {
 			isa = PBXGroup;
 			children = (
+				53B0DC5D236F6B0200A4A58F /* ViewModel */,
 				53B0DC5A236F625B00A4A58F /* Utils */,
 				53B0DC50236F5AED00A4A58F /* Model */,
 				53B0DC51236F5AFE00A4A58F /* View */,
@@ -172,6 +175,14 @@
 				53B0DC5B236F626A00A4A58F /* UIViewExtension.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		53B0DC5D236F6B0200A4A58F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				53B0DC5E236F6B2700A4A58F /* BillViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,6 +320,7 @@
 				53B0DC57236F5BA900A4A58F /* BillCell.swift in Sources */,
 				53B0DC59236F5E9900A4A58F /* BillController.swift in Sources */,
 				53B0DC21236F5A9800A4A58F /* AppDelegate.swift in Sources */,
+				53B0DC5F236F6B2700A4A58F /* BillViewModel.swift in Sources */,
 				53B0DC23236F5A9800A4A58F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

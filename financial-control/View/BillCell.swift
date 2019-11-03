@@ -12,34 +12,18 @@ class BillCell: UITableViewCell {
     
     static let cellHeight = 100
     
-    var bill: Bill! {
+    var billViewModel: BillViewModel! {
         didSet {
-            if bill.expireDate >= Date() {
-                accessoryType   = .detailDisclosureButton
-                textLabel?.text = "\(bill.title) - A vencer!"
-            } else {
-                accessoryType   = .none
-                textLabel?.text = "\(bill.title) - Vencida"
-            }
+            textLabel?.text = billViewModel.title
+            accessoryType   = billViewModel.accessoryType
         }
-    }
-    
-    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
-        super.setHighlighted(highlighted, animated: animated)
-        
-        contentView.backgroundColor = isHighlighted ? .gray : .white
-        textLabel?.textColor        = isHighlighted ? .white : .blue
-        detailTextLabel?.textColor  = isHighlighted ? .white : .black
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         textLabel?.font          = .boldSystemFont(ofSize: 24)
-        textLabel?.numberOfLines = 0
-        
-        detailTextLabel?.textColor = .black
-        detailTextLabel?.font      = .systemFont(ofSize: 20, weight: .light)
+        textLabel?.numberOfLines = 0 
     }
     
     required init?(coder: NSCoder) {
