@@ -11,15 +11,32 @@ import UIKit
 struct BillViewModel {
     
     let title: String
-    let accessoryType: UITableViewCell.AccessoryType
+    let category: String
+    let value: String
+    let statusColor: UIColor
     
     init(bill: Bill) {
-        if bill.expireDate >= Date() {
-            accessoryType = .detailDisclosureButton
-            title         = "\(bill.title) - A vencer!"
+        title    = bill.title
+        category = bill.category
+        value    = String(bill.value)
+        
+        if bill.status == "Pago" {
+            statusColor = .green
         } else {
-            accessoryType = .none
-            title         = "\(bill.title) - Vencida"
+            let order = NSCalendar.current.compare(bill.expireDate, to: Date(), toGranularity: .day)
+            
+            if order == .orderedDescending {
+                statusColor = .clear
+            } else if order == .orderedSame {
+                statusColor = .yellow
+            } else {
+                statusColor = .red
+            }
         }
     }
+}
+
+struct GroupedBills {
+    let date:  Date
+    let bills: [BillViewModel]
 }

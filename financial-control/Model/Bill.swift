@@ -13,4 +13,6 @@ struct Bill: Decodable {
     let title:      String
     let value:      Double
     let expireDate: Date
+    let category:   String
+    let status:     String
 }
