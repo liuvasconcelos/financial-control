@@ -88,4 +88,63 @@ class BillController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let currentBillIsNotPayed = groupedBills[indexPath.section].bills[indexPath.row].statusColor != .green
+        let editAction            = editBill(forRowAtIndexPath: indexPath)
+        let deleteAction          = deleteBill(forRowAtIndexPath: indexPath)
+        let undoPayment           = undoPaymentOfBill(forRowAtIndexPath: indexPath)
+        
+        return currentBillIsNotPayed ? UISwipeActionsConfiguration(actions: [editAction, deleteAction]) : UISwipeActionsConfiguration(actions: [undoPayment])
+    }
+    
+    fileprivate func editBill(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
+        let action = UIContextualAction(style: .normal,
+                                        title: "Editar") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
+            print("EDITAR_____________________")
+            // Open edit screen
+        }
+        
+        action.backgroundColor = .orange
+        return action
+    }
+    
+    fileprivate func deleteBill(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
+       let action = UIContextualAction(style: .normal,
+                                       title: "Deletar") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
+           print("DELETAR ___________________")
+           // Open delete alert
+       }
+       
+       action.backgroundColor = .red
+       return action
+    }
+    
+    fileprivate func undoPaymentOfBill(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
+       let action = UIContextualAction(style: .normal,
+                                       title: "Desfazer") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
+           print("DESFAZR ___________________")
+           // Open undo alert
+       }
+       
+       action.backgroundColor = .red
+       return action
+    }
+    
+    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let currentBillIsNotPayed = groupedBills[indexPath.section].bills[indexPath.row].statusColor != .green
+        let payAction             = payBill(forRowAtIndexPath: indexPath)
+        
+        return currentBillIsNotPayed ? UISwipeActionsConfiguration(actions: [payAction]) : nil
+    }
+
+    fileprivate func payBill(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
+        let action = UIContextualAction(style: .normal,
+                                        title: "Pagar") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
+            print("PAGAR_____________________")
+            // Open pay alert
+        }
+        
+        action.backgroundColor = .blue
+        return action
+    }
 }
