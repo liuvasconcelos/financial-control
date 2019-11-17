@@ -10,7 +10,8 @@ import UIKit
 
 class BillController: UITableViewController {
     
-    var groupedBills = [GroupedBills]()
+    var groupedBills  = [GroupedBills]()
+    let apiDataSource = BillApiDataSource.getInstance()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,25 +35,85 @@ class BillController: UITableViewController {
     }
     
     func fetchData() {
-        let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: Date()) ?? Date()
-        let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date()
+        apiDataSource.getAllBills { (callback) in
+            callback.onSuccess { (response) in
+                self.mapResponse(bills: response.bills ?? [])
+            }
+            callback.onFailed { (_) in
+                self.showError()
+            }
+        }
         
-        let bill1 = Bill(id: 1, title: "Conta 01", value: 10.0, expireDate: tomorrow, category: "Pessoal", status: "Pago")
-        let bill2 = Bill(id: 2, title: "Conta 02", value: 20.0, expireDate: tomorrow, category: "Pessoal", status: "Não pago")
-        let bill3 = Bill(id: 3, title: "Conta 03", value: 10.0, expireDate: tomorrow, category: "Pessoal", status: "Não pago")
-        let bill4 = Bill(id: 4, title: "Conta 04", value: 10.0, expireDate: Date(), category: "Pessoal", status: "Pago")
-        let bill5 = Bill(id: 5, title: "Conta 05", value: 10.0, expireDate: Date(), category: "Pessoal", status: "Não pago")
-        let bill6 = Bill(id: 6, title: "Conta 06", value: 10.0, expireDate: yesterday, category: "Pessoal", status: "Não pago")
+        
+//        let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: Date()) ?? Date()
+//        let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date()
+//        
+//        let bill1 = Bill(id: 1, title: "Conta 01", value: 10.0, expireDate: tomorrow, category: "Pessoal", status: "Pago")
+//        let bill2 = Bill(id: 2, title: "Conta 02", value: 20.0, expireDate: tomorrow, category: "Pessoal", status: "Não pago")
+//        let bill3 = Bill(id: 3, title: "Conta 03", value: 10.0, expireDate: tomorrow, category: "Pessoal", status: "Não pago")
+//        let bill4 = Bill(id: 4, title: "Conta 04", value: 10.0, expireDate: Date(), category: "Pessoal", status: "Pago")
+//        let bill5 = Bill(id: 5, title: "Conta 05", value: 10.0, expireDate: Date(), category: "Pessoal", status: "Não pago")
+//        let bill6 = Bill(id: 6, title: "Conta 06", value: 10.0, expireDate: yesterday, category: "Pessoal", status: "Não pago")
+//
+//        let groupedBills1 = GroupedBills(date:  tomorrow,
+//                                         bills: [bill1, bill2, bill3].map({ return BillViewModel(bill: $0)}))
+//        let groupedBills2 = GroupedBills(date:  Date(),
+//                                         bills: [bill4, bill5].map({ return BillViewModel(bill: $0)}))
+//        let groupedBills3 = GroupedBills(date:  yesterday,
+//                                         bills: [bill6].map({ return BillViewModel(bill: $0)}))
+//        
+//        groupedBills = [groupedBills1, groupedBills2, groupedBills3].sorted(by: { $0.date < $1.date })
+//        tableView.reloadData()
+    }
+    
+    fileprivate func mapResponse(bills: [Bill]) {
+        let orderedBills = bills.sorted(by: { $0.expireDate.toDate() < $1.expireDate.toDate() })
+        
+        var organizingGroupedBills = [GroupedBills]()
+        
+        for bill in orderedBills {
+            let expiredDate = bill.expireDate.toDate()
+            
+            let currentDates = organizingGroupedBills.map({ $0.date })
+            
+            if currentDates.contains(expiredDate) {
+                let foundGroup = organizingGroupedBills.filter { (group) -> Bool in
+                    group.date == expiredDate
+                }.first
+                
+                organizingGroupedBills.removeAll { (group) -> Bool in
+                    group.date == expiredDate
+                }
+                
+                var currentBills = foundGroup?.bills ?? []
+                currentBills.append(BillViewModel(bill: bill))
+                organizingGroupedBills.append(GroupedBills(date:  expiredDate,
+                                                           bills: currentBills))
+            } else {
+                organizingGroupedBills.append(GroupedBills(date:  expiredDate,
+                                                           bills: [BillViewModel(bill: bill)]))
+            }
+        }
 
-        let groupedBills1 = GroupedBills(date:  tomorrow,
-                                         bills: [bill1, bill2, bill3].map({ return BillViewModel(bill: $0)}))
-        let groupedBills2 = GroupedBills(date:  Date(),
-                                         bills: [bill4, bill5].map({ return BillViewModel(bill: $0)}))
-        let groupedBills3 = GroupedBills(date:  yesterday,
-                                         bills: [bill6].map({ return BillViewModel(bill: $0)}))
+        groupedBills = organizingGroupedBills.sorted(by: { $0.date < $1.date })
         
-        groupedBills = [groupedBills1, groupedBills2, groupedBills3].sorted(by: { $0.date < $1.date })
-        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+        
+    }
+    
+    fileprivate func showError() {
+        let alert  = UIAlertController(title: "Erro", message: "Ocorreu algum erro ao tentar acessar as contas.", preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+        let reload = UIAlertAction(title: "Recarregar", style: .default) { (_) in
+            self.fetchData()
+        }
+        
+        alert.addAction(cancel)
+        alert.addAction(reload)
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

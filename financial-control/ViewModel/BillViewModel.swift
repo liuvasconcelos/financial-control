@@ -23,7 +23,7 @@ struct BillViewModel {
         if bill.status == "Pago" {
             statusColor = .green
         } else {
-            let order = NSCalendar.current.compare(bill.expireDate, to: Date(), toGranularity: .day)
+            let order = NSCalendar.current.compare(bill.expireDate.toDate(), to: Date(), toGranularity: .day)
             
             if order == .orderedDescending {
                 statusColor = .clear

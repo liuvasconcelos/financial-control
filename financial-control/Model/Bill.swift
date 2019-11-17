@@ -8,11 +8,24 @@
 
 import Foundation
 
-struct Bill: Decodable {
+struct BillsResponse: Codable {
+    let bills: [Bill]?
+    
+    enum CodingKeys: String, CodingKey {
+        case bills = "data"
+    }
+}
+
+struct Bill: Codable {
     let id:         Int
     let title:      String
     let value:      Double
-    let expireDate: Date
+    let expireDate: String
     let category:   String
     let status:     String
+    
+    enum CodingKeys: String, CodingKey {
+        case id, title, value, category, status
+        case expireDate = "expire_date"
+    }
 }

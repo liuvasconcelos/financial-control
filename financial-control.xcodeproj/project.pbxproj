@@ -10,6 +10,10 @@
 		5367705E2380880100D1F389 /* BillHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367705D2380880100D1F389 /* BillHeader.swift */; };
 		53677060238088F900D1F389 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367705F238088F900D1F389 /* DateExtension.swift */; };
 		5367706223808AC700D1F389 /* UIViewLayoutExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367706123808AC700D1F389 /* UIViewLayoutExtension.swift */; };
+		5367706423818FCA00D1F389 /* BillApiDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367706323818FCA00D1F389 /* BillApiDataSource.swift */; };
+		536770672381904400D1F389 /* BaseCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536770662381904400D1F389 /* BaseCallback.swift */; };
+		536770692381905300D1F389 /* CallbackEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536770682381905300D1F389 /* CallbackEnum.swift */; };
+		5367706B238194AA00D1F389 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367706A238194AA00D1F389 /* StringExtension.swift */; };
 		53B0DC21236F5A9800A4A58F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B0DC20236F5A9800A4A58F /* AppDelegate.swift */; };
 		53B0DC23236F5A9800A4A58F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B0DC22236F5A9800A4A58F /* SceneDelegate.swift */; };
 		53B0DC2A236F5A9A00A4A58F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53B0DC29236F5A9A00A4A58F /* Assets.xcassets */; };
@@ -36,6 +40,10 @@
 		5367705D2380880100D1F389 /* BillHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillHeader.swift; sourceTree = "<group>"; };
 		5367705F238088F900D1F389 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		5367706123808AC700D1F389 /* UIViewLayoutExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewLayoutExtension.swift; sourceTree = "<group>"; };
+		5367706323818FCA00D1F389 /* BillApiDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillApiDataSource.swift; sourceTree = "<group>"; };
+		536770662381904400D1F389 /* BaseCallback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCallback.swift; sourceTree = "<group>"; };
+		536770682381905300D1F389 /* CallbackEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallbackEnum.swift; sourceTree = "<group>"; };
+		5367706A238194AA00D1F389 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		53B0DC1D236F5A9800A4A58F /* financial-control.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "financial-control.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		53B0DC20236F5A9800A4A58F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		53B0DC22236F5A9800A4A58F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +78,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		536770652381903600D1F389 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				536770662381904400D1F389 /* BaseCallback.swift */,
+				536770682381905300D1F389 /* CallbackEnum.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		53B0DC14236F5A9800A4A58F = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +160,8 @@
 		53B0DC53236F5B0D00A4A58F /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				536770652381903600D1F389 /* Utils */,
+				5367706323818FCA00D1F389 /* BillApiDataSource.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -153,6 +172,7 @@
 				53B0DC5B236F626A00A4A58F /* UIViewExtension.swift */,
 				5367705F238088F900D1F389 /* DateExtension.swift */,
 				5367706123808AC700D1F389 /* UIViewLayoutExtension.swift */,
+				5367706A238194AA00D1F389 /* StringExtension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -269,11 +289,15 @@
 				53B0DC55236F5B2700A4A58F /* Bill.swift in Sources */,
 				53B0DC57236F5BA900A4A58F /* BillCell.swift in Sources */,
 				53B0DC59236F5E9900A4A58F /* BillController.swift in Sources */,
+				5367706423818FCA00D1F389 /* BillApiDataSource.swift in Sources */,
+				536770672381904400D1F389 /* BaseCallback.swift in Sources */,
 				5367706223808AC700D1F389 /* UIViewLayoutExtension.swift in Sources */,
 				53677060238088F900D1F389 /* DateExtension.swift in Sources */,
+				5367706B238194AA00D1F389 /* StringExtension.swift in Sources */,
 				53B0DC21236F5A9800A4A58F /* AppDelegate.swift in Sources */,
 				53B0DC5F236F6B2700A4A58F /* BillViewModel.swift in Sources */,
 				53B0DC23236F5A9800A4A58F /* SceneDelegate.swift in Sources */,
+				536770692381905300D1F389 /* CallbackEnum.swift in Sources */,
 				5367705E2380880100D1F389 /* BillHeader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
