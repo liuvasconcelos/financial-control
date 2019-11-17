@@ -30,13 +30,29 @@ class BillApiDataSource {
             
              do {
                 let decoder = JSONDecoder()
-                let genres = try decoder.decode(BillsResponse.self, from: data)
+                let bills = try decoder.decode(BillsResponse.self, from: data)
                 
-                loadCallback(BaseCallback.success(genres))
+                loadCallback(BaseCallback.success(bills))
                  
              } catch {
-                 loadCallback(BaseCallback.failed(error: error))
+                loadCallback(BaseCallback.failed(error: error))
           }
+        }.resume()
+    }
+    
+    func deleteBillWith(id: Int, _ loadCallback: @escaping (BaseCallback<String>) -> Void) {
+        let urlPath = "http://127.0.0.1:3000/api/v1/accounts/\(id)"
+        
+        guard let url  = URL(string: urlPath) else { return }
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "DELETE"
+        
+        URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+            if let error = error {
+                loadCallback(BaseCallback.failed(error: error))
+            } else {
+                loadCallback(BaseCallback.success(String()))
+            }
         }.resume()
     }
 }

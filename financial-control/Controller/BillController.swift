@@ -82,15 +82,15 @@ class BillController: UITableViewController {
         
     }
     
-    fileprivate func showError() {
-        let alert  = UIAlertController(title: "Erro", message: "Ocorreu algum erro ao tentar acessar as contas.", preferredStyle: .alert)
-        let cancel = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+    fileprivate func showError(message: String = "Ocorreu algum erro ao tentar acessar as contas.", toReload: Bool = true) {
+        let alert  = UIAlertController(title: "Erro", message: message, preferredStyle: .alert)
+        let cancel = UIAlertAction(title: toReload ? "Cancelar" : "Ok", style: .cancel, handler: nil)
         let reload = UIAlertAction(title: "Recarregar", style: .default) { (_) in
             self.fetchData()
         }
         
         alert.addAction(cancel)
-        alert.addAction(reload)
+        if toReload { alert.addAction(reload) }
         
         self.present(alert, animated: true, completion: nil)
     }
@@ -150,13 +150,33 @@ class BillController: UITableViewController {
     
     fileprivate func deleteBill(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
        let action = UIContextualAction(style: .normal,
-                                       title: "Deletar") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
-           print("DELETAR ___________________")
-           // Open delete alert
+                                       title: "Deletar") { (contextAction: UIContextualAction,
+                                                            sourceView: UIView,
+                                                            completionHandler: (Bool) -> Void) in
+            let alert = UIAlertController(title:   "Deletar conta",
+                                         message: "Tem certeza que deseja deletar esta conta?", preferredStyle: .alert)
+            let deleteAction = UIAlertAction(title: "Deletar", style: .destructive) { (_) in
+                self.delete(bill: self.groupedBills[indexPath.section].bills[indexPath.row] )
+            }
+            let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+            alert.addAction(deleteAction)
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true, completion: nil)
        }
        
        action.backgroundColor = .red
        return action
+    }
+    
+    fileprivate func delete(bill: BillViewModel) {
+        apiDataSource.deleteBillWith(id: bill.id) { (callback) in
+            callback.onSuccess { (_) in
+                self.fetchData()
+            }
+            callback.onFailed { (_) in
+                self.showError(message: "Ocorreu algum erro ao tentar excluir.", toReload: true)
+            }
+        }
     }
     
     fileprivate func undoPaymentOfBill(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {

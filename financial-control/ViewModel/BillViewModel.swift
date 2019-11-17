@@ -10,12 +10,14 @@ import UIKit
 
 struct BillViewModel {
     
+    let id: Int
     let title: String
     let category: String
     let value: String
     let statusColor: UIColor
     
     init(bill: Bill) {
+        id       = bill.id
         title    = bill.title
         category = bill.category
         value    = String(bill.value)
