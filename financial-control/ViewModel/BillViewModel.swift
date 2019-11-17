@@ -15,12 +15,16 @@ struct BillViewModel {
     let category: String
     let value: String
     let statusColor: UIColor
+    let date: String
+    let status: String
     
     init(bill: Bill) {
         id       = bill.id
         title    = bill.title
         category = bill.category
         value    = String(bill.value)
+        date     = bill.expireDate
+        status   = bill.status
         
         if bill.status == "Pago" {
             statusColor = .green

@@ -14,6 +14,7 @@
 		536770672381904400D1F389 /* BaseCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536770662381904400D1F389 /* BaseCallback.swift */; };
 		536770692381905300D1F389 /* CallbackEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536770682381905300D1F389 /* CallbackEnum.swift */; };
 		5367706B238194AA00D1F389 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367706A238194AA00D1F389 /* StringExtension.swift */; };
+		5367706D2381E64C00D1F389 /* AddBillController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367706C2381E64C00D1F389 /* AddBillController.swift */; };
 		53B0DC21236F5A9800A4A58F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B0DC20236F5A9800A4A58F /* AppDelegate.swift */; };
 		53B0DC23236F5A9800A4A58F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B0DC22236F5A9800A4A58F /* SceneDelegate.swift */; };
 		53B0DC2A236F5A9A00A4A58F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53B0DC29236F5A9A00A4A58F /* Assets.xcassets */; };
@@ -44,6 +45,7 @@
 		536770662381904400D1F389 /* BaseCallback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCallback.swift; sourceTree = "<group>"; };
 		536770682381905300D1F389 /* CallbackEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallbackEnum.swift; sourceTree = "<group>"; };
 		5367706A238194AA00D1F389 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		5367706C2381E64C00D1F389 /* AddBillController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBillController.swift; sourceTree = "<group>"; };
 		53B0DC1D236F5A9800A4A58F /* financial-control.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "financial-control.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		53B0DC20236F5A9800A4A58F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		53B0DC22236F5A9800A4A58F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				53B0DC58236F5E9900A4A58F /* BillController.swift */,
+				5367706C2381E64C00D1F389 /* AddBillController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5367706D2381E64C00D1F389 /* AddBillController.swift in Sources */,
 				53B0DC5C236F626A00A4A58F /* UIViewExtension.swift in Sources */,
 				53B0DC55236F5B2700A4A58F /* Bill.swift in Sources */,
 				53B0DC57236F5BA900A4A58F /* BillCell.swift in Sources */,

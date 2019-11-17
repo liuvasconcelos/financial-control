@@ -18,13 +18,27 @@ class BillController: UITableViewController {
         
         self.setupNavigationBar()
         self.setupTableView()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Adicionar", style: .plain, target: self, action: #selector(openAddButtonScreen))
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(BillController.handleModalDismissed),
+                                               name: NSNotification.Name(rawValue: "modalIsDimissed"),
+                                               object: nil)
+    }
+    
+    @objc func handleModalDismissed() {
         self.fetchData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.fetchData()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+
     func setupNavigationBar() {
         self.navigationController?.navigationBar.barStyle = .black
     }
@@ -32,6 +46,16 @@ class BillController: UITableViewController {
     func setupTableView() {
         self.tableView.register(BillCell.self, forCellReuseIdentifier: BillCell.identifier())
         self.tableView.separatorStyle = .none
+    }
+    
+    @objc func openAddButtonScreen() {
+        let addBillVC = AddBillController()
+        
+        if #available(iOS 13.0, *) {
+            self.present(addBillVC, animated: true, completion: nil)
+        } else  {
+            self.navigationController?.pushViewController(addBillVC, animated: true)
+        }
     }
     
     func fetchData() {
@@ -140,8 +164,13 @@ class BillController: UITableViewController {
     fileprivate func editBill(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal,
                                         title: "Editar") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
-            print("EDITAR_____________________")
-            // Open edit screen
+            let addBillVC = AddBillController()
+            addBillVC.currentBill = self.groupedBills[indexPath.section].bills[indexPath.row]
+            if #available(iOS 13.0, *) {
+                self.present(addBillVC, animated: true, completion: nil)
+            } else  {
+                self.navigationController?.pushViewController(addBillVC, animated: true)
+            }
         }
         
         action.backgroundColor = .orange

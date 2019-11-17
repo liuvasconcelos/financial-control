@@ -77,4 +77,30 @@ class BillApiDataSource {
             }
         }.resume()
     }
+    
+    func saveAccount(bill: Bill, edition: Bool, _ loadCallback: @escaping (BaseCallback<String>) -> Void) {
+        let urlPath = edition ? "http://127.0.0.1:3000/api/v1/accounts/\(bill.id)" : "http://127.0.0.1:3000/api/v1/accounts/"
+        
+        guard let url  = URL(string: urlPath) else { return }
+        var urlRequest = URLRequest(url: url)
+        
+        urlRequest.httpMethod = edition ? "PUT": "POST"
+        let parameters = ["title":       bill.title,
+                          "value":       bill.value,
+                          "expire_date": bill.expireDate,
+                          "category":    bill.category,
+                          "status":      edition ? bill.status : "Não pago"] as [String : Any]
+        
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        guard let httpBody = try? JSONSerialization.data(withJSONObject:parameters, options: []) else { return }
+        urlRequest.httpBody = httpBody
+        
+        URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+            if let error = error {
+                loadCallback(BaseCallback.failed(error: error))
+            } else {
+                loadCallback(BaseCallback.success(String()))
+            }
+        }.resume()
+    }
 }
