@@ -55,4 +55,26 @@ class BillApiDataSource {
             }
         }.resume()
     }
+    
+    func changeStatus(id: Int, status: String, _ loadCallback: @escaping (BaseCallback<String>) -> Void) {
+        let urlPath = "http://127.0.0.1:3000/api/v1/accounts/\(id)"
+        
+        guard let url  = URL(string: urlPath) else { return }
+        var urlRequest = URLRequest(url: url)
+        
+        urlRequest.httpMethod = "PUT"
+        let parameters = ["status": status] as [String : Any]
+        
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        guard let httpBody = try? JSONSerialization.data(withJSONObject:parameters, options: []) else { return }
+        urlRequest.httpBody = httpBody
+        
+        URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+            if let error = error {
+                loadCallback(BaseCallback.failed(error: error))
+            } else {
+                loadCallback(BaseCallback.success(String()))
+            }
+        }.resume()
+    }
 }

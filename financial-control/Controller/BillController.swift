@@ -174,7 +174,7 @@ class BillController: UITableViewController {
                 self.fetchData()
             }
             callback.onFailed { (_) in
-                self.showError(message: "Ocorreu algum erro ao tentar excluir.", toReload: true)
+                self.showError(message: "Ocorreu algum erro ao tentar excluir.", toReload: false)
             }
         }
     }
@@ -182,8 +182,15 @@ class BillController: UITableViewController {
     fileprivate func undoPaymentOfBill(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
        let action = UIContextualAction(style: .normal,
                                        title: "Desfazer") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
-           print("DESFAZR ___________________")
-           // Open undo alert
+           let bill = self.groupedBills[indexPath.section].bills[indexPath.row]
+           self.apiDataSource.changeStatus(id: bill.id, status: "Não Pago") { (callback) in
+               callback.onSuccess { (_) in
+                   self.fetchData()
+               }
+               callback.onFailed { (_) in
+                   self.showError(message: "Ocorreu algum erro ao tentar desfazer pagamento.", toReload: false)
+               }
+            }
        }
        
        action.backgroundColor = .red
@@ -200,8 +207,15 @@ class BillController: UITableViewController {
     fileprivate func payBill(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal,
                                         title: "Pagar") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
-            print("PAGAR_____________________")
-            // Open pay alert
+            let bill = self.groupedBills[indexPath.section].bills[indexPath.row]
+            self.apiDataSource.changeStatus(id: bill.id, status: "Pago") { (callback) in
+                callback.onSuccess { (_) in
+                    self.fetchData()
+                }
+                callback.onFailed { (_) in
+                    self.showError(message: "Ocorreu algum erro ao tentar pagar.", toReload: false)
+                }
+             }
         }
         
         action.backgroundColor = .blue
