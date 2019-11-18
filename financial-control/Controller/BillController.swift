@@ -18,7 +18,7 @@ class BillController: UITableViewController {
         
         self.setupNavigationBar()
         self.setupTableView()
-        
+        self.navigationController?.navigationBar.topItem?.title = "Controle dos Passivos"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Adicionar", style: .plain, target: self, action: #selector(openAddButtonScreen))
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(BillController.handleModalDismissed),

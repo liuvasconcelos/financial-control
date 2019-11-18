@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: scene as! UIWindowScene)
         window!.makeKeyAndVisible()
         
-        let mainView: BillController = BillController()
+        let mainView: SignInViewController = SignInViewController()
                 
         let navigation = UINavigationController(rootViewController: mainView)
         
