@@ -41,6 +41,7 @@ class BillController: UITableViewController {
 
     func setupNavigationBar() {
         self.navigationController?.navigationBar.barStyle = .black
+        navigationItem.setHidesBackButton(true, animated: true)
     }
 
     func setupTableView() {
