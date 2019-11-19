@@ -23,8 +23,8 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationController?.navigationBar.isHidden = true
+
         self.addLayout()
     }
     override func viewWillAppear(_ animated: Bool) {

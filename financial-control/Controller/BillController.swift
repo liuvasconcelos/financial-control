@@ -18,7 +18,7 @@ class BillController: UITableViewController {
         
         self.setupNavigationBar()
         self.setupTableView()
-        self.navigationController?.navigationBar.topItem?.title = "Controle dos Passivos"
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Adicionar", style: .plain, target: self, action: #selector(openAddButtonScreen))
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(BillController.handleModalDismissed),
@@ -32,6 +32,7 @@ class BillController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         self.fetchData()
     }
     
@@ -41,7 +42,10 @@ class BillController: UITableViewController {
 
     func setupNavigationBar() {
         self.navigationController?.navigationBar.barStyle = .black
+        
+        self.navigationController?.navigationBar.isHidden = false
         navigationItem.setHidesBackButton(true, animated: true)
+        navigationItem.title = "Passivos"
     }
 
     func setupTableView() {

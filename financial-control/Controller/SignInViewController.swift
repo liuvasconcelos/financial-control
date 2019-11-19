@@ -14,7 +14,7 @@ class SignInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationController?.navigationBar.isHidden = true
         self.configureSignUpButton()
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -38,8 +38,11 @@ class SignInViewController: UIViewController {
     
     @objc func goToSignUp() {
         let signUpView = SignUpViewController()
-        
+
         self.navigationController?.pushViewController(signUpView, animated: true)
+        
+//        let billsList = BillController()
+//        self.navigationController?.pushViewController(billsList, animated: true)
     }
     
 }
