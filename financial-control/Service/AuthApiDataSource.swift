@@ -20,6 +20,31 @@ class AuthApiDataSource {
         INSTANCE = nil
     }
     
+    func login(email: String, password: String, _  loadCallback: @escaping (BaseCallback<User>) -> Void) {
+        let urlPath = "http://127.0.0.1:3000/api/v1/users/"
+        
+        guard let url = URL(string: urlPath) else { return }
+        
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+             guard let data = data else { return loadCallback(BaseCallback.failed()) }
+            
+             do {
+                let decoder   = JSONDecoder()
+                let users     = try decoder.decode(UserResponse.self, from: data)
+                let foundUser = users.users?.filter { $0.email == email && $0.password == password}
+                
+                if let user = foundUser?.first {
+                    loadCallback(BaseCallback.success(user))
+                } else {
+                    loadCallback(BaseCallback.failed(error: String()))
+                }
+                 
+             } catch {
+                loadCallback(BaseCallback.failed(error: String()))
+          }
+        }.resume()
+    }
+    
     func saveUser(name: String, email: String, password: String, _ loadCallback: @escaping (BaseCallback<String>) -> Void) {
         let urlPath = "http://127.0.0.1:3000/api/v1/users"
         

@@ -18,6 +18,7 @@
 		5367706F23835BBE00D1F389 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367706E23835BBE00D1F389 /* SignUpViewController.swift */; };
 		5367707123835BFB00D1F389 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367707023835BFB00D1F389 /* SignInViewController.swift */; };
 		536770732383606C00D1F389 /* AuthApiDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536770722383606C00D1F389 /* AuthApiDataSource.swift */; };
+		536770772384A59A00D1F389 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536770762384A59A00D1F389 /* User.swift */; };
 		53B0DC21236F5A9800A4A58F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B0DC20236F5A9800A4A58F /* AppDelegate.swift */; };
 		53B0DC2A236F5A9A00A4A58F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53B0DC29236F5A9A00A4A58F /* Assets.xcassets */; };
 		53B0DC2D236F5A9A00A4A58F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53B0DC2B236F5A9A00A4A58F /* LaunchScreen.storyboard */; };
@@ -51,6 +52,7 @@
 		5367706E23835BBE00D1F389 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		5367707023835BFB00D1F389 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		536770722383606C00D1F389 /* AuthApiDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthApiDataSource.swift; sourceTree = "<group>"; };
+		536770762384A59A00D1F389 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		53B0DC1D236F5A9800A4A58F /* financial-control.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "financial-control.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		53B0DC20236F5A9800A4A58F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		53B0DC29236F5A9A00A4A58F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				53B0DC54236F5B2700A4A58F /* Bill.swift */,
+				536770762384A59A00D1F389 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 				5367706B238194AA00D1F389 /* StringExtension.swift in Sources */,
 				5367706F23835BBE00D1F389 /* SignUpViewController.swift in Sources */,
 				53B0DC21236F5A9800A4A58F /* AppDelegate.swift in Sources */,
+				536770772384A59A00D1F389 /* User.swift in Sources */,
 				53B0DC5F236F6B2700A4A58F /* BillViewModel.swift in Sources */,
 				536770692381905300D1F389 /* CallbackEnum.swift in Sources */,
 				5367705E2380880100D1F389 /* BillHeader.swift in Sources */,
