@@ -12,6 +12,8 @@ class SignInViewController: UIViewController {
     
     let apiDataSource = AuthApiDataSource.getInstance()
     
+    var logoImageView = UIImageView()
+    
     var emailLabel    = UILabel()
     var passwordLabel = UILabel()
     
@@ -30,10 +32,9 @@ class SignInViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        view.backgroundColor = .blue
-        
-        emailTextField.text    = "email@email.com"
-        passwordTextField.text = "123456"
+        view.backgroundColor          = .white
+        emailTextField.placeholder    = "Insira seu email:"
+        passwordTextField.placeholder = "Senha"
         
         self.addTouch()
     }
@@ -48,9 +49,8 @@ class SignInViewController: UIViewController {
     }
     
     fileprivate func addLayout() {
-        anchorLabel(label: emailLabel, order: 0, text: "E-mail:")
-        anchorLabel(label: passwordLabel, order: 1, text: "Senha:")
-        
+        self.addLogoImage()
+
         anchorTextField(field: emailTextField, order: 0)
         anchorTextField(field: passwordTextField, order: 1)
         
@@ -60,36 +60,38 @@ class SignInViewController: UIViewController {
         self.configureSignUpButton()
     }
     
-    fileprivate func anchorLabel(label: UILabel, order: CGFloat, text: String) {
-        view.addSubview(label)
-        label.anchor(top:     view.topAnchor,
-                     leading: view.leadingAnchor,
-                     padding: UIEdgeInsets(top: 100 + (order * 60), left: 16, bottom: 0, right: 0),
-                     size:    CGSize(width: view.frame.width - 32, height: 30))
-        label.text = text
+    fileprivate func addLogoImage() {
+        logoImageView.image = UIImage(named: "logo")
+        view.addSubview(logoImageView)
+        logoImageView.anchor(top: view.topAnchor,
+                             padding: UIEdgeInsets(top: 150, left: 0, bottom: 0, right: 0),
+                             size: CGSize(width: 200, height: 66))
+        logoImageView.anchorCenterX(anchorX: view.centerXAnchor)
     }
     
     fileprivate func anchorTextField(field: UITextField, order: CGFloat) {
         view.addSubview(field)
         field.anchor(top:     view.topAnchor,
                      leading: view.leadingAnchor,
-                     padding: UIEdgeInsets(top: 130 + (order * 60), left: 16, bottom: 0, right: 0),
-                     size:    CGSize(width: view.frame.width - 32, height: 30))
+                     padding: UIEdgeInsets(top: 300 + (order * 60), left: 32, bottom: 0, right: 0),
+                     size:    CGSize(width: view.frame.width - 64, height: 30))
         field.keyboardType    = .default
-        field.backgroundColor = .green
+        field.setBottomBorder()
     }
     
     fileprivate func configureSignInButton() {
         signInButton.setTitle("Entrar", for: .normal)
-        signInButton.backgroundColor = .clear
+        signInButton.setTitleColor(.black, for: .normal)
+        signInButton.titleLabel?.font = .systemFont(ofSize: 14)
+        signInButton.backgroundColor = UIColor(named: "logoBlue")
         signInButton.addTarget(self, action: #selector(login), for: .touchUpInside)
-        
+        signInButton.layer.cornerRadius = 5
         view.addSubview(signInButton)
-        signInButton.anchor(leading:  view.leadingAnchor,
-                            bottom:   view.bottomAnchor,
+        signInButton.anchor(top:      view.topAnchor,
+                            leading:  view.leadingAnchor,
                             trailing: view.trailingAnchor,
-                            padding:  UIEdgeInsets(top: 0, left: 16, bottom: 200, right: 16),
-                            size:     CGSize(width: 0, height: 50))
+                            padding:  UIEdgeInsets(top: 430, left: 32, bottom: 0, right: 32),
+                            size:     CGSize(width: 0, height: 32))
     }
     
     @objc func login() {
@@ -132,16 +134,18 @@ class SignInViewController: UIViewController {
     }
     
     fileprivate func configureSignUpButton() {
-        signUpButton.setTitle("Cadastrar", for: .normal)
+        signUpButton.setTitle("Não possui cadastro?", for: .normal)
         signUpButton.backgroundColor = .clear
+        signUpButton.setTitleColor(.black, for: .normal)
+        signUpButton.titleLabel?.font = .systemFont(ofSize: 14)
         signUpButton.addTarget(self, action: #selector(goToSignUp), for: .touchUpInside)
         
         view.addSubview(signUpButton)
-        signUpButton.anchor(leading:  view.leadingAnchor,
-                            bottom:   view.bottomAnchor,
+        signUpButton.anchor(top:      view.topAnchor,
+                            leading:  view.leadingAnchor,
                             trailing: view.trailingAnchor,
-                            padding:  UIEdgeInsets(top: 0, left: 16, bottom: 64, right: 16),
-                            size:     CGSize(width: 0, height: 50))
+                            padding:  UIEdgeInsets(top: 460, left: 32, bottom: 0, right: 32),
+                            size:     CGSize(width: 0, height: 30))
     }
     
     @objc func goToSignUp() {
