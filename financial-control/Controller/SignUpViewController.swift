@@ -11,6 +11,8 @@ import UIKit
 class SignUpViewController: UIViewController {
     
     let apiDataSource = AuthApiDataSource.getInstance()
+    
+    let titleLabel    = UILabel()
     let nameLabel     = UILabel()
     let emailLabel    = UILabel()
     let passwordLabel = UILabel()
@@ -19,7 +21,8 @@ class SignUpViewController: UIViewController {
     let emailTextField    = UITextField()
     let passwordTextField = UITextField()
     
-    let saveButton = UIButton()
+    let saveButton   = UIButton()
+    let cancelButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +33,7 @@ class SignUpViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        view.backgroundColor = .yellow
+        view.backgroundColor = UIColor(named: "darkBlue")
         addTouch()
     }
     
@@ -44,6 +47,8 @@ class SignUpViewController: UIViewController {
     }
     
     fileprivate func addLayout() {
+        self.addTitle()
+        
         anchorLabel(label: nameLabel, order: 0, text: "Nome:")
         anchorLabel(label: emailLabel, order: 1, text: "E-mail:")
         anchorLabel(label: passwordLabel, order: 2, text: "Senha:")
@@ -55,35 +60,70 @@ class SignUpViewController: UIViewController {
         passwordTextField.isSecureTextEntry = true
         
         addButton()
+        
+        if #available(iOS 13.0, *) {} else  {
+            self.addCancelButton()
+        }
+    }
+    
+    fileprivate func addTitle() {
+        view.addSubview(titleLabel)
+        titleLabel.anchor(top:     view.topAnchor,
+                          leading: view.leadingAnchor,
+                          padding: UIEdgeInsets(top: 60, left: 32, bottom: 0, right: 0),
+                          size:    CGSize(width: view.frame.width - 32, height: 30))
+        titleLabel.text      = "Cadastrar"
+        titleLabel.font      = .systemFont(ofSize: 32, weight: .bold)
+        titleLabel.textColor = .lightGray
     }
     
     fileprivate func anchorLabel(label: UILabel, order: CGFloat, text: String) {
         view.addSubview(label)
         label.anchor(top:     view.topAnchor,
                      leading: view.leadingAnchor,
-                     padding: UIEdgeInsets(top: 100 + (order * 60), left: 16, bottom: 0, right: 0),
-                     size:    CGSize(width: view.frame.width - 32, height: 30))
+                     padding: UIEdgeInsets(top: 150 + (order * 60), left: 32, bottom: 0, right: 0),
+                     size:    CGSize(width: view.frame.width - 64, height: 30))
         label.text = text
+        label.textColor = .lightGray
     }
     
     fileprivate func anchorTextField(field: UITextField, order: CGFloat) {
         view.addSubview(field)
         field.anchor(top:     view.topAnchor,
                      leading: view.leadingAnchor,
-                     padding: UIEdgeInsets(top: 130 + (order * 60), left: 16, bottom: 0, right: 0),
-                     size:    CGSize(width: view.frame.width - 32, height: 30))
+                     padding: UIEdgeInsets(top: 180 + (order * 60), left: 32, bottom: 0, right: 0),
+                     size:    CGSize(width: view.frame.width - 64, height: 30))
         field.keyboardType    = .default
-        field.backgroundColor = .green
+        field.setBottomBorder(backgroundColor: UIColor(named: "darkBlue")!, shadowColor: .lightGray)
+        field.textColor = .lightGray
     }
     
     fileprivate func addButton() {
         view.addSubview(saveButton)
-        saveButton.backgroundColor = .blue
+        saveButton.backgroundColor = UIColor(named: "logoBlue")
         saveButton.setTitle("Cadastrar", for: .normal)
+        saveButton.setTitleColor(UIColor(named: "darkBlue"), for: .normal)
+        saveButton.layer.cornerRadius = 5
+        
         saveButton.anchor(leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor,
-                          padding: UIEdgeInsets(top: 0, left: 16, bottom: 16, right: 16),
-                          size:    CGSize(width: 0, height: 50))
+                          padding: UIEdgeInsets(top: 0, left: 32, bottom: 100, right: 32),
+                          size:    CGSize(width: 0, height: 30))
         saveButton.addTarget(self, action: #selector(signUp), for: .touchUpInside)
+    }
+    
+    fileprivate func addCancelButton() {
+        view.addSubview(cancelButton)
+        cancelButton.backgroundColor = .clear
+        cancelButton.setTitle("Desisti, voltar para o login :)", for: .normal)
+        cancelButton.titleLabel?.font = .systemFont(ofSize: 14, weight: .regular)
+        cancelButton.anchor(leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor,
+                          padding: UIEdgeInsets(top: 0, left: 32, bottom: 50, right: 32),
+                          size:    CGSize(width: 0, height: 30))
+        cancelButton.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
+    }
+    
+    @objc func dismissView() {
+        self.navigationController?.popViewController(animated: true)
     }
     
     @objc func signUp() {

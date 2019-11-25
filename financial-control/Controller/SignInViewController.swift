@@ -151,7 +151,12 @@ class SignInViewController: UIViewController {
     @objc func goToSignUp() {
         let signUpView = SignUpViewController()
 
-        self.navigationController?.pushViewController(signUpView, animated: true)
+        if #available(iOS 13.0, *) {
+            self.present(signUpView, animated: true, completion: nil)
+        } else  {
+            self.navigationController?.pushViewController(signUpView, animated: true)
+        }
+      
     }
     
 }
