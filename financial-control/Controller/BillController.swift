@@ -20,6 +20,7 @@ class BillController: UITableViewController {
         self.setupTableView()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Adicionar", style: .plain, target: self, action: #selector(openAddButtonScreen))
+        navigationItem.rightBarButtonItem?.tintColor = .white
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(BillController.handleModalDismissed),
                                                name: NSNotification.Name(rawValue: "modalIsDimissed"),
@@ -41,11 +42,12 @@ class BillController: UITableViewController {
     }
 
     func setupNavigationBar() {
-        self.navigationController?.navigationBar.barStyle = .black
+        self.navigationController?.navigationBar.barTintColor = UIColor(named: "logoBlue")
         
         self.navigationController?.navigationBar.isHidden = false
         navigationItem.setHidesBackButton(true, animated: true)
         navigationItem.title = "Passivos"
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
     }
 
     func setupTableView() {
@@ -254,7 +256,7 @@ class BillController: UITableViewController {
              }
         }
         
-        action.backgroundColor = .blue
+        action.backgroundColor = UIColor(named: "darkBlue")
         return action
     }
 
