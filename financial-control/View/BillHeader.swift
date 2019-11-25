@@ -14,8 +14,13 @@ class BillHeader: UIView {
     func configureHeader(date: Date) {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height))
         label.text = date.toString(dateFormat: "dd/MM/yyyy")
+        label.font = .systemFont(ofSize: 14, weight: .bold)
         
         self.addSubview(label)
-        label.fillSuperView()
+        label.anchor(top:      self.topAnchor,
+                     leading:  self.leadingAnchor,
+                     bottom:   self.bottomAnchor,
+                     trailing: self.trailingAnchor,
+                     padding:  UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0))
     }
 }

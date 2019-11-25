@@ -36,6 +36,9 @@ class SignInViewController: UIViewController {
         emailTextField.placeholder    = "Insira seu email:"
         passwordTextField.placeholder = "Senha"
         
+        emailTextField.text = "email@email.com"
+        passwordTextField.text = "123456"
+        
         self.addTouch()
     }
     

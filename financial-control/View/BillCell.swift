@@ -10,12 +10,14 @@ import UIKit
 
 class BillCell: UITableViewCell {
     
-    static let cellHeight = 60
+    static let cellHeight = 100
     
     var billTitle           = UILabel()
     var billCategory        = UILabel()
     var billValue           = UILabel()
+    
     var billStatusIndicator = UIView()
+    var mainView            = UIView()
     
     var billViewModel: BillViewModel! {
         didSet {
@@ -38,19 +40,34 @@ class BillCell: UITableViewCell {
     }
     
     fileprivate func addViewElements() {
-        self.addSubviews(billTitle, billCategory, billValue, billStatusIndicator)
+        self.backgroundColor = UIColor(named: "veryLightGray")
+        mainView.frame = CGRect(x: 16, y: 8, width: self.frame.width - 32, height: self.frame.height - 16)
+        self.addSubview(mainView)
+        mainView.layer.cornerRadius = 5
+        mainView.anchor(top:      self.topAnchor,
+                        leading:  self.leadingAnchor,
+                        bottom:   self.bottomAnchor,
+                        trailing: self.trailingAnchor,
+                        padding:  UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16))
+
+        mainView.backgroundColor = .white
+        mainView.layer.applySketchShadow(color: .lightGray, alpha: 0.5, x: 0, y: 3, blur: 8, spread: 3)
         
-        billTitle.anchor(top: topAnchor, leading: leadingAnchor, trailing: trailingAnchor, padding: UIEdgeInsets(top: 4, left: 16, bottom: 0, right: 4), size: CGSize(width: 0, height: 30))
-        billTitle.font = .systemFont(ofSize: 14, weight: .semibold)
+        mainView.addSubviews(billTitle, billCategory, billValue, billStatusIndicator)
         
-        billCategory.anchor(leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: UIEdgeInsets(top: 0, left: 16, bottom: 4, right: 0.6 * frame.width), size: CGSize(width: 0, height: 20))
-        billCategory.font = .systemFont(ofSize: 12, weight: .regular)
+        billTitle.anchor(top: mainView.topAnchor, leading: mainView.leadingAnchor, trailing: mainView.trailingAnchor, padding: UIEdgeInsets(top: 4, left: 16, bottom: 0, right: 4), size: CGSize(width: 0, height: 30))
+        billTitle.font = .systemFont(ofSize: 16, weight: .semibold)
         
-        billValue.anchor(bottom: bottomAnchor, trailing: trailingAnchor, padding: UIEdgeInsets(top: 0, left: 0, bottom: 4, right: 4), size: CGSize(width: 0.3 * frame.width, height: 20))
-        billValue.font = .systemFont(ofSize: 12, weight: .bold)
+        billCategory.anchor(leading: mainView.leadingAnchor, bottom: mainView.bottomAnchor, trailing: mainView.trailingAnchor, padding: UIEdgeInsets(top: 0, left: 16, bottom: 4, right: 0.6 * frame.width), size: CGSize(width: 0, height: 20))
+        billCategory.font = .systemFont(ofSize: 14, weight: .regular)
         
-        billStatusIndicator.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, padding: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), size: CGSize(width: 4, height: 0))
+        billValue.anchor(bottom: mainView.bottomAnchor, trailing: mainView.trailingAnchor, padding: UIEdgeInsets(top: 0, left: 0, bottom: 4, right: 4), size: CGSize(width: 0.3 * frame.width, height: 20))
+        billValue.font = .systemFont(ofSize: 16, weight: .bold)
+        billValue.textAlignment = .center
+        
+        billStatusIndicator.anchor(top: mainView.topAnchor, leading: mainView.leadingAnchor, bottom: mainView.bottomAnchor, padding: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), size: CGSize(width: 4, height: 0))
         billStatusIndicator.backgroundColor = .clear
+        billStatusIndicator.layer.cornerRadius = 5
     }
 
 }

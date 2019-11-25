@@ -22,4 +22,39 @@ extension UIView {
             subview.removeFromSuperview()
         }
     }
+    
+    func dropShadow(color: UIColor, opacity: Float = 0.5, offSet: CGSize, radius: CGFloat = 1, scale: Bool = true) {
+       layer.masksToBounds = false
+       layer.shadowColor   = color.cgColor
+       layer.shadowOpacity = opacity
+       layer.shadowOffset  = offSet
+       layer.shadowRadius  = radius
+
+       layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
+       layer.shouldRasterize = true
+       layer.rasterizationScale = scale ? UIScreen.main.scale : 1
+     }
+}
+
+extension CALayer {
+    func applySketchShadow(color: UIColor  = .black,
+                           alpha: Float    = 0.5,
+                           x: CGFloat      = 0,
+                           y: CGFloat      = 2,
+                           blur: CGFloat   = 4,
+                           spread: CGFloat = 0) {
+        shadowColor   = color.cgColor
+        shadowOpacity = alpha
+        shadowOffset  = CGSize(width: x, height: y)
+        shadowRadius  = blur 
+        
+        if spread == 0 {
+            shadowPath = nil
+        } else {
+            let dx   = -spread
+            let rect = bounds.insetBy(dx: dx, dy: dx)
+            shadowPath = UIBezierPath(rect: rect).cgPath
+        }
+        masksToBounds = false
+    }
 }

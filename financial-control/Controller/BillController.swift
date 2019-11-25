@@ -50,7 +50,9 @@ class BillController: UITableViewController {
 
     func setupTableView() {
         self.tableView.register(BillCell.self, forCellReuseIdentifier: BillCell.identifier())
-        self.tableView.separatorStyle = .none
+        self.tableView.separatorStyle  = .none
+        self.tableView.backgroundColor = UIColor(named: "veryLightGray")
+        self.tableView.allowsSelection = false
     }
     
     @objc func openAddButtonScreen() {
@@ -255,4 +257,5 @@ class BillController: UITableViewController {
         action.backgroundColor = .blue
         return action
     }
+
 }
