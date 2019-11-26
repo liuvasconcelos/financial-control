@@ -20,7 +20,7 @@ class BillController: UITableViewController {
         self.setupTableView()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Adicionar", style: .plain, target: self, action: #selector(openAddButtonScreen))
-        navigationItem.rightBarButtonItem?.tintColor = .white
+        navigationItem.rightBarButtonItem?.tintColor = UIColor(named: "darkBlue")
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(BillController.handleModalDismissed),
                                                name: NSNotification.Name(rawValue: "modalIsDimissed"),
