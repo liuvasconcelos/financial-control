@@ -11,6 +11,8 @@ import Foundation
 class BillApiDataSource {
     
     private static var INSTANCE: BillApiDataSource?
+//    private static let IP = "127.0.0.1"
+    private static let IP = "192.168.0.16"
 
     public static func getInstance() -> BillApiDataSource {
         return INSTANCE ?? BillApiDataSource()
@@ -21,7 +23,7 @@ class BillApiDataSource {
     }
     
     func getAllBills(_ loadCallback: @escaping (BaseCallback<BillsResponse>) -> Void) {
-        let urlPath = "http://127.0.0.1:3000/api/v1/accounts/"
+        let urlPath = "http://\(BillApiDataSource.IP):3000/api/v1/accounts/"
         
         guard let url = URL(string: urlPath) else { return }
         
@@ -41,7 +43,7 @@ class BillApiDataSource {
     }
     
     func deleteBillWith(id: Int, _ loadCallback: @escaping (BaseCallback<String>) -> Void) {
-        let urlPath = "http://127.0.0.1:3000/api/v1/accounts/\(id)"
+        let urlPath = "http://\(BillApiDataSource.IP):3000/api/v1/accounts/\(id)"
         
         guard let url  = URL(string: urlPath) else { return }
         var urlRequest = URLRequest(url: url)
@@ -57,7 +59,7 @@ class BillApiDataSource {
     }
     
     func changeStatus(id: Int, status: String, _ loadCallback: @escaping (BaseCallback<String>) -> Void) {
-        let urlPath = "http://127.0.0.1:3000/api/v1/accounts/\(id)"
+        let urlPath = "http://\(BillApiDataSource.IP):3000/api/v1/accounts/\(id)"
         
         guard let url  = URL(string: urlPath) else { return }
         var urlRequest = URLRequest(url: url)
@@ -79,7 +81,7 @@ class BillApiDataSource {
     }
     
     func saveAccount(bill: Bill, edition: Bool, _ loadCallback: @escaping (BaseCallback<String>) -> Void) {
-        let urlPath = edition ? "http://127.0.0.1:3000/api/v1/accounts/\(bill.id)" : "http://127.0.0.1:3000/api/v1/accounts/"
+        let urlPath = edition ? "http://\(BillApiDataSource.IP):3000/api/v1/accounts/\(bill.id)" : "http://\(BillApiDataSource.IP):3000/api/v1/accounts/"
         
         guard let url  = URL(string: urlPath) else { return }
         var urlRequest = URLRequest(url: url)

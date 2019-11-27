@@ -56,14 +56,17 @@ class BillCell: UITableViewCell {
         mainView.addSubviews(billTitle, billCategory, billValue, billStatusIndicator)
         
         billTitle.anchor(top: mainView.topAnchor, leading: mainView.leadingAnchor, trailing: mainView.trailingAnchor, padding: UIEdgeInsets(top: 4, left: 16, bottom: 0, right: 4), size: CGSize(width: 0, height: 30))
-        billTitle.font = .systemFont(ofSize: 16, weight: .semibold)
+        billTitle.font      = .systemFont(ofSize: 16, weight: .semibold)
+        billTitle.textColor = UIColor(named: "darkBlue")
         
         billCategory.anchor(leading: mainView.leadingAnchor, bottom: mainView.bottomAnchor, trailing: mainView.trailingAnchor, padding: UIEdgeInsets(top: 0, left: 16, bottom: 4, right: 0.6 * frame.width), size: CGSize(width: 0, height: 20))
-        billCategory.font = .systemFont(ofSize: 14, weight: .regular)
+        billCategory.font      = .systemFont(ofSize: 14, weight: .regular)
+        billCategory.textColor = UIColor(named: "darkBlue")
         
         billValue.anchor(bottom: mainView.bottomAnchor, trailing: mainView.trailingAnchor, padding: UIEdgeInsets(top: 0, left: 0, bottom: 4, right: 4), size: CGSize(width: 0.3 * frame.width, height: 20))
         billValue.font = .systemFont(ofSize: 16, weight: .bold)
         billValue.textAlignment = .center
+        billValue.textColor     = UIColor(named: "darkBlue")
         
         billStatusIndicator.anchor(top: mainView.topAnchor, leading: mainView.leadingAnchor, bottom: mainView.bottomAnchor, padding: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), size: CGSize(width: 4, height: 0))
         billStatusIndicator.backgroundColor = .clear

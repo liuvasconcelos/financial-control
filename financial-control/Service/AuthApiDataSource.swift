@@ -11,6 +11,8 @@ import Foundation
 class AuthApiDataSource {
     
     private static var INSTANCE: AuthApiDataSource?
+    //    private static let IP = "127.0.0.1"
+    private static let IP = "192.168.0.16"
 
     public static func getInstance() -> AuthApiDataSource {
         return INSTANCE ?? AuthApiDataSource()
@@ -21,7 +23,7 @@ class AuthApiDataSource {
     }
     
     func login(email: String, password: String, _  loadCallback: @escaping (BaseCallback<User>) -> Void) {
-        let urlPath = "http://127.0.0.1:3000/api/v1/users/"
+        let urlPath = "http://\(AuthApiDataSource.IP):3000/api/v1/users/"
         
         guard let url = URL(string: urlPath) else { return }
         
@@ -46,7 +48,7 @@ class AuthApiDataSource {
     }
     
     func saveUser(name: String, email: String, password: String, _ loadCallback: @escaping (BaseCallback<String>) -> Void) {
-        let urlPath = "http://127.0.0.1:3000/api/v1/users"
+        let urlPath = "http://\(AuthApiDataSource.IP):3000/api/v1/users"
         
         guard let url  = URL(string: urlPath) else { return }
         var urlRequest = URLRequest(url: url)

@@ -79,6 +79,9 @@ class SignInViewController: UIViewController {
                      padding: UIEdgeInsets(top: 300 + (order * 60), left: 32, bottom: 0, right: 0),
                      size:    CGSize(width: view.frame.width - 64, height: 30))
         field.keyboardType    = .default
+        field.attributedPlaceholder = NSAttributedString(string: "placeholder text",
+                                                         attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        field.textColor = UIColor(named: "darkBlue")
         field.setBottomBorder()
     }
     

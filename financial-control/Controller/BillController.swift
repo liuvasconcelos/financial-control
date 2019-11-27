@@ -7,11 +7,21 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 class BillController: UITableViewController {
     
     var groupedBills  = [GroupedBills]()
     let apiDataSource = BillApiDataSource.getInstance()
+    
+    lazy var adBannerView: GADBannerView = {
+        let adBannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+        adBannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        adBannerView.delegate = self
+        adBannerView.rootViewController = self
+
+        return adBannerView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +35,11 @@ class BillController: UITableViewController {
                                                selector: #selector(BillController.handleModalDismissed),
                                                name: NSNotification.Name(rawValue: "modalIsDimissed"),
                                                object: nil)
+        
+        let adRequest = GADRequest()
+//        GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = [ (kGADSimulatorID as! String), "2077ef9a63d2b398840261c8221a0c9b" ]
+        GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = [ (kGADSimulatorID as! String), "6638d8830be83d092bcd6afe31be434e6e4a4bd1" ]
+        adBannerView.load(adRequest)
     }
     
     @objc func handleModalDismissed() {
@@ -260,4 +275,18 @@ class BillController: UITableViewController {
         return action
     }
 
+}
+
+extension BillController: GADBannerViewDelegate {
+
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        print("Banner loaded successfully")
+        tableView.tableHeaderView?.frame = bannerView.frame
+        tableView.tableHeaderView = bannerView
+    }
+
+    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        print("Fail to receive ads")
+        print(error)
+    }
 }
